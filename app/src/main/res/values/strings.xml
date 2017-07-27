@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">YouTube Mp3 Download</string>
+    <string name="parse">Download</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="banner_ad_unit_id">ca-app-pub-5706640555347507/2799401230</string>
+    <string name="author">Author :</string>
+    <string name="title">Title :</string>
+    <string name="youtube_url">Youtube URL</string>
+
+</resources>
