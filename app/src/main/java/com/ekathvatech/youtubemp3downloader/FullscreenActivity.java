@@ -1,4 +1,4 @@
-package com.ekathvatech.youtubemp3download;
+package com.ekathvatech.youtubemp3downloader;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

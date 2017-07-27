@@ -1,4 +1,4 @@
-package com.ekathvatech.youtubemp3download;
+package com.ekathvatech.youtubemp3downloader;
 
 import org.junit.Test;
 
