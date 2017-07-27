@@ -8,25 +8,25 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:onClick="onClickButton"
         android:text="@string/parse"
-        android:layout_marginTop="189dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:textColorHighlight="@color/colorAccent"/>
+        android:backgroundTint="@color/white"
+        android:textColor="@color/primary_dark"
+        android:layout_alignTop="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="97dp"
-        android:ems="10"
+        android:textColor="@color/white"
         android:inputType="textPersonName"
-        android:hint="@string/youtube_url"/>
+        android:hint="@string/youtube_url"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView2"
@@ -34,6 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="51dp"
         android:text="@string/title"
+        android:textSize="18dp"
+        android:textColor="@color/white"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/adView" />
     <com.google.android.gms.ads.AdView
@@ -51,6 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         android:layout_marginTop="15dp"
         android:text="@string/author"
         android:layout_alignStart="@+id/textView2" />

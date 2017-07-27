@@ -3,6 +3,7 @@ package com.ekathvatech.youtubemp3downloader;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -36,10 +37,13 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Typeface custom_font7 = Typeface.createFromAsset(getAssets(),  "fonts/SourceSansPro-Black.otf");
+
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         editText = (EditText) findViewById(R.id.editText);
+        editText.setTypeface(custom_font7);
         final Intent intent = getIntent ();
         final Uri data = intent.getData ();
         if (data != null) {
@@ -47,9 +51,11 @@ public class MainActivity extends AppCompatActivity{
             fileName = pathSegments.get (pathSegments.size () - 1);
         }
         Button button = (Button) findViewById(R.id.button);
-        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        button.setBackgroundColor(getResources().getColor(R.color.accent));
         final TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setTypeface(custom_font7);
         final TextView textView1 = (TextView) findViewById(R.id.textView);
+        textView1.setTypeface(custom_font7);
         if(PermissionCheck.readAndWriteExternalStorage(this)){
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
