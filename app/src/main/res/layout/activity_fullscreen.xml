@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.ekathvatech.youtubemp3downloader.FullscreenActivity">
 
 
@@ -13,5 +13,5 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/ytdplain" />
 </RelativeLayout>
