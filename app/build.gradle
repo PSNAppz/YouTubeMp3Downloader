@@ -7,8 +7,8 @@ android {
         applicationId "com.ekathvatech.youtubemp3download"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 10
-        versionName '1.1'
+        versionCode 30
+        versionName '1.5'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

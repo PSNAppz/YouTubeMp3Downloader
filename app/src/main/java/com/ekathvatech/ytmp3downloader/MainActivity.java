@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity{
     private String fileName;
     private AdView mAdView;
     private EditText editText;
+    String value1 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity{
         mAdView.loadAd(adRequest);
         editText = (EditText) findViewById(R.id.editText);
         editText.setTypeface(custom_font7);
+        Bundle extras = getIntent().getExtras();
         final Intent intent = getIntent ();
         final Uri data = intent.getData ();
         if (data != null) {
@@ -57,6 +59,11 @@ public class MainActivity extends AppCompatActivity{
         final TextView textView1 = (TextView) findViewById(R.id.textView);
         textView1.setTypeface(custom_font7);
         if(PermissionCheck.readAndWriteExternalStorage(this)){
+            if (extras != null) {
+                value1 = extras.getString(Intent.EXTRA_TEXT);
+                editText.setText(value1);
+            }
+
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     ytLink = editText.getText().toString();

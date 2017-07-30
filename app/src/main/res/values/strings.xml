@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SYD</string>
+    <string name="app_name">Simple YouTube Mp3 Downloader</string>
     <string name="parse">Download</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
@@ -8,6 +8,6 @@
     <string name="banner_ad_unit_id">ca-app-pub-3041411382010702/9580625520</string>
     <string name="author">Views : </string>
     <string name="title">Title : </string>
-    <string name="youtube_url">YouTube URL</string>
+    <string name="youtube_url">Youtube URL</string>
 
 </resources>
