@@ -58,4 +58,15 @@
         android:text="@string/author"
         android:layout_alignStart="@+id/textView2" />
 
+    <TextView
+        android:id="@+id/tvekathva"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\u00a9 EKATHVA"
+        android:layout_above="@+id/adView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp" />
+
 </android.widget.RelativeLayout>

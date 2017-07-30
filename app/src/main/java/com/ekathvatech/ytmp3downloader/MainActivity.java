@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity{
         Typeface custom_font7 = Typeface.createFromAsset(getAssets(),  "fonts/SourceSansPro-Black.otf");
 
         mAdView = (AdView) findViewById(R.id.adView);
+        final TextView ek = (TextView) findViewById(R.id.tvekathva);
+        ek.setTypeface(custom_font7);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         editText = (EditText) findViewById(R.id.editText);
