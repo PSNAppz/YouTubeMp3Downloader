@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_dark"
-    tools:context="com.ekathvatech.ytmp3downloader.FullscreenActivity">
+    android:background="#ff0012"
+    tools:context="com.ekathvatech.onlinemp3downloader.FullscreenActivity">
 
 
     <ImageView

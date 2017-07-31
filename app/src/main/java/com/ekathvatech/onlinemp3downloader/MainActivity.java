@@ -1,4 +1,4 @@
-package com.ekathvatech.ytmp3downloader;
+package com.ekathvatech.onlinemp3downloader;
 
 import android.app.DownloadManager;
 import android.content.Context;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Typeface custom_font7 = Typeface.createFromAsset(getAssets(),  "fonts/SourceSansPro-Black.otf");
+        Typeface custom_font7 = Typeface.createFromAsset(getAssets(),  "fonts/PT_Sans-Web-Regular.otf");
 
         mAdView = (AdView) findViewById(R.id.adView);
         final TextView ek = (TextView) findViewById(R.id.tvekathva);
@@ -101,6 +101,15 @@ public class MainActivity extends AppCompatActivity{
                 }
             });
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
 }
