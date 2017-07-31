@@ -4,11 +4,11 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "com.ekathvatech.youtubemp3download"
+        applicationId "com.ekathvatech.onlinemp3download"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 30
-        versionName '1.5'
+        versionCode 37
+        versionName '1.6.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

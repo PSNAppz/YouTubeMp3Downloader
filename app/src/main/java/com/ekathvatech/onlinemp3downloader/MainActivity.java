@@ -25,9 +25,9 @@ import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
 import at.huber.youtubeExtractor.YtFile;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
-    String ytLink = "" ;
+    String ytLink = "";
     private String fileName;
     private AdView mAdView;
     private EditText editText;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Typeface custom_font7 = Typeface.createFromAsset(getAssets(),  "fonts/PT_Sans-Web-Regular.otf");
+        Typeface custom_font7 = Typeface.createFromAsset(getAssets(), "fonts/PT_Sans-Web-Regular.otf");
 
         mAdView = (AdView) findViewById(R.id.adView);
         final TextView ek = (TextView) findViewById(R.id.tvekathva);
@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity{
         editText = (EditText) findViewById(R.id.editText);
         editText.setTypeface(custom_font7);
         Bundle extras = getIntent().getExtras();
-        final Intent intent = getIntent ();
-        final Uri data = intent.getData ();
+        final Intent intent = getIntent();
+        final Uri data = intent.getData();
         if (data != null) {
-            final List<String> pathSegments = data.getPathSegments ();
-            fileName = pathSegments.get (pathSegments.size () - 1);
+            final List<String> pathSegments = data.getPathSegments();
+            fileName = pathSegments.get(pathSegments.size() - 1);
         }
         Button button = (Button) findViewById(R.id.button);
         button.setBackgroundColor(getResources().getColor(R.color.accent));
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity{
         textView.setTypeface(custom_font7);
         final TextView textView1 = (TextView) findViewById(R.id.textView);
         textView1.setTypeface(custom_font7);
-        if(PermissionCheck.readAndWriteExternalStorage(this)){
+        if (PermissionCheck.readAndWriteExternalStorage(this)) {
             if (extras != null) {
                 value1 = extras.getString(Intent.EXTRA_TEXT);
                 editText.setText(value1);
@@ -69,18 +69,17 @@ public class MainActivity extends AppCompatActivity{
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     ytLink = editText.getText().toString();
-                    if(ytLink.isEmpty()){
-                        Toast.makeText(getApplicationContext(),"Please enter a valid video URL",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(),"Parsing URL",Toast.LENGTH_SHORT).show();
+                    if (ytLink.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Please enter a valid video URL", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Parsing URL", Toast.LENGTH_SHORT).show();
                     }
                     new YouTubeExtractor(getApplicationContext()) {
                         @Override
                         public void onExtractionComplete(SparseArray<YtFile> ytFiles, VideoMeta vMeta) {
                             if (ytFiles != null) {
-                                textView.setText("Title : "+vMeta.getTitle());
-                                textView1.setText("Views : "+vMeta.getViewCount());
+                                textView.setText("Title : " + vMeta.getTitle());
+                                textView1.setText("Views : " + vMeta.getViewCount());
                                 int tag = 140;
                                 String downloadUrl = ytFiles.get(tag).getUrl();
                                 String url = downloadUrl;
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity{
                                     request.allowScanningByMediaScanner();
                                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                                 }
-                                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,vMeta.getTitle()+".mp3");
+                                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, vMeta.getTitle() + ".mp3");
                                 // get download service and enqueue file
                                 DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                                 manager.enqueue(request);
@@ -102,14 +101,7 @@ public class MainActivity extends AppCompatActivity{
             });
         }
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
 }
+

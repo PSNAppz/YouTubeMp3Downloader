@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 
 public class FullscreenActivity extends AppCompatActivity {
-
+    Intent i ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +19,12 @@ public class FullscreenActivity extends AppCompatActivity {
             public void run() {
                 try {
                     super.run();
-                    sleep(2000);  //Delay of 10 seconds
+                    sleep(2000);
                 } catch (Exception e) {
 
                 } finally {
 
-                    Intent i = new Intent(FullscreenActivity.this,
+                    i = new Intent(FullscreenActivity.this,
                             MainActivity.class);
                     startActivity(i);
                     finish();
@@ -32,6 +32,21 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         };
         welcomeThread.start();
+
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
 
     }
 
