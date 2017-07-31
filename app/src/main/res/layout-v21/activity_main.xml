@@ -86,7 +86,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:textAlignment="center"
-        android:textColor="@color/aqua"
+        android:textColor="@color/blue"
         android:layout_height="wrap_content"
         android:text="@string/online_mp3_downloader"
         android:textSize="30dp"

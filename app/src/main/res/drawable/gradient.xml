@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:state_pressed="true">
+    <shape android:shape="rectangle">
+        <!--make a gradient background-->
+        <gradient
+            android:startColor="#08AEEA"
+            android:endColor="#2AF598"
+            android:angle="180" />
+        <!-- make the button corners rounded-->
+        <corners android:radius="25dp"/>
+    </shape>
+</item>
+<item android:state_focused="false" android:state_enabled="true">
+    <shape android:shape="rectangle">
+        <!--make a gradient background-->
+        <gradient
+            android:startColor="#08AEEA"
+            android:endColor="#2AF598"
+            android:angle="180" />
+        <!-- make the button corners rounded-->
+        <corners android:radius="25dp"/>
+    </shape>
+</item>
+<item android:state_focused="true" android:state_enabled="true">
+    <shape android:shape="rectangle">
+        <!--make a gradient background-->
+        <gradient
+            android:startColor="#08AEEA"
+            android:endColor="#2AF598"
+            android:angle="180" />
+        <!-- make the button corners rounded-->
+        <corners android:radius="25dp"/>
+    </shape>
+</item>
+<item android:state_focused="false" android:state_enabled="false">
+    <shape android:shape="rectangle">
+        <!--make a gradient background-->
+        <gradient
+            android:startColor="#08AEEA"
+            android:endColor="#2AF598"
+            android:angle="180" />
+        <!-- make the button corners rounded-->
+        <corners android:radius="25dp"/>
+    </shape>
+</item>
+
+<item android:state_focused="true" android:state_enabled="false">
+<shape android:shape="rectangle">
+    <!--make a gradient background-->
+    <gradient
+        android:startColor="#08AEEA"
+        android:endColor="#2AF598"
+        android:angle="180" />
+    <!-- make the button corners rounded-->
+    <corners android:radius="25dp"/>
+</shape>
+</item>
+</selector>

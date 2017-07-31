@@ -1,9 +1,12 @@
 package com.ekathvatech.onlinemp3downloader;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
 
 
 public class FullscreenActivity extends AppCompatActivity {
@@ -12,7 +15,12 @@ public class FullscreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_fullscreen);
+
+        Typeface titlefont = Typeface.createFromAsset(getAssets(), "fonts/strasua.ttf");
+        TextView tv = (TextView) findViewById(R.id.textView4);
+        tv.setTypeface(titlefont);
         Thread welcomeThread = new Thread() {
 
             @Override

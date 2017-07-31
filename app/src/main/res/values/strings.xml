@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Online Mp3 Downloader</string>
-    <string name="parse">Download</string>
+    <string name="parse">DOWNLOAD</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="banner_ad_unit_id">ca-app-pub-3041411382010702/9580625520</string>
-    <string name="author">Views : </string>
-    <string name="title">Title : </string>
-    <string name="video_url">URL</string>
+    <string name="author"></string>
+    <string name="title">Copy and paste the URL below and press download to begin conversion.</string>
+    <string name="video_url">Paste URL here</string>
+    <string name="change_dir">Change Dir</string>
+    <string name="online_mp3_downloader">Online mp3 Downloader</string>
+    <string name="u00a9_ne0n_security">© Ne0n Security ™</string>
 
 </resources>
