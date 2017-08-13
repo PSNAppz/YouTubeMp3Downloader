@@ -7,9 +7,10 @@ android {
         applicationId "com.ekathvatech.onlinemp3download"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 70
-        versionName '2.0.0'
+        versionCode 90
+        versionName '2.1.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionNameSuffix 'FInal'
     }
     buildTypes {
         release {

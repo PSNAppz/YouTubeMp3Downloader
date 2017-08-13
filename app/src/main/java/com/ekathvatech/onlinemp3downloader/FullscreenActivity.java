@@ -1,6 +1,9 @@
 package com.ekathvatech.onlinemp3downloader;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +22,8 @@ public class FullscreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fullscreen);
 
         Typeface titlefont = Typeface.createFromAsset(getAssets(), "fonts/strasua.ttf");
+        TextView title = (TextView) findViewById(R.id.textView4);
+        Shader shader = title.getPaint().setShader(new LinearGradient(0, 0, 0, title.getLineHeight(), Color.parseColor("#1de9b6"), Color.parseColor("#08AEEA"), Shader.TileMode.REPEAT));
         TextView tv = (TextView) findViewById(R.id.textView4);
         tv.setTypeface(titlefont);
         Thread welcomeThread = new Thread() {

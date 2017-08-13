@@ -23,8 +23,6 @@ import com.bumptech.glide.Glide;
 import com.codekidlabs.storagechooser.StorageChooser;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
-
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
 import at.huber.youtubeExtractor.YtFile;
@@ -103,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     if (ytLink.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Please enter a valid video URL", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Converting please wait...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Converting please wait...", Toast.LENGTH_LONG).show();
                     }
                     new YouTubeExtractor(getApplicationContext()) {
                         @Override
