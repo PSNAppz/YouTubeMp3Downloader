@@ -7,10 +7,9 @@ android {
         applicationId "com.ekathvatech.onlinemp3download"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 90
-        versionName '2.1.0'
+        versionCode 94
+        versionName '2.2.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionNameSuffix 'FInal'
     }
     buildTypes {
         release {
@@ -36,7 +35,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-ads:11.0.2'
+    compile 'com.google.firebase:firebase-ads:11.2.0'
+    compile 'com.google.firebase:firebase-core:11.2.0'
+    compile 'com.google.firebase:firebase-messaging:11.2.0'
 }
 
 configurations.all {
@@ -49,3 +50,12 @@ configurations.all {
         }
     }
 }
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://maven.google.com" }
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'

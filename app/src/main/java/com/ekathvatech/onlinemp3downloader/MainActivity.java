@@ -21,13 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.codekidlabs.storagechooser.StorageChooser;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
 import at.huber.youtubeExtractor.YtFile;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    private InterstitialAd mInterstitialAd;
 
     String ytLink = "";
     String storage = "";
@@ -41,8 +44,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3041411382010702/9445884800");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
         title = (TextView) findViewById(R.id.textView3);
-        Shader shader = title.getPaint().setShader(new LinearGradient(0, 0, 0, title.getLineHeight(), Color.parseColor("#1de9b6"), Color.parseColor("#08AEEA"), Shader.TileMode.REPEAT));
+        title.getPaint().setShader(new LinearGradient(0, 0, 0, title.getLineHeight(), Color.parseColor("#1de9b6"), Color.parseColor("#08AEEA"), Shader.TileMode.REPEAT));
         storage = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("STORAGE_PATH", "");
         if(storage.equals("")){
             PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("STORAGE_PATH",Environment.DIRECTORY_DOWNLOADS).apply();
@@ -60,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         changeDir.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
                 Toast.makeText(getApplicationContext(), "Current directory :"+storage, Toast.LENGTH_SHORT).show();
                 chooser.show();
             }
@@ -97,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
             }
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
+
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    }
                     ytLink = editText.getText().toString();
                     if (ytLink.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Please enter a valid video URL", Toast.LENGTH_SHORT).show();
