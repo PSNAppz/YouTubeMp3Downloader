@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
@@ -129,15 +130,24 @@ public class MainActivity extends AppCompatActivity{
                                 textView1.setText(" By : " + vMeta.getAuthor());
                                 Glide.with(getApplicationContext()).load(vMeta.getMqImageUrl()).into(imageView);
                                 int tag = 140;
-                                String downloadUrl = ytFiles.get(tag).getUrl();
-                                String url = downloadUrl;
-                                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                                request.setTitle(vMeta.getTitle());
-                                request.allowScanningByMediaScanner();
-                                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                                request.setDestinationInExternalPublicDir(storage, vMeta.getTitle() + ".mp3");
-                                DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                                manager.enqueue(request);
+                                String downloadUrl = "";
+                                try {
+                                    downloadUrl = ytFiles.get(tag).getUrl();
+                                }catch (Exception e){
+                                    Toast.makeText(getApplicationContext(), "Sorry ! This link is not supported. Sorry for the inconvenience caused.", Toast.LENGTH_SHORT).show();
+                                }
+                                DownloadManager.Request request;
+                                String extension;
+                                if (!downloadUrl.toString().isEmpty()) {
+                                    request = new DownloadManager.Request(Uri.parse(downloadUrl));
+                                    extension = ".mp3";
+                                    request.setTitle(vMeta.getTitle());
+                                    request.allowScanningByMediaScanner();
+                                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                                    request.setDestinationInExternalPublicDir(storage, vMeta.getTitle() + extension);
+                                    DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                                    manager.enqueue(request);
+                                }
                             }
                         }
                     }.extract(ytLink, true, true);
