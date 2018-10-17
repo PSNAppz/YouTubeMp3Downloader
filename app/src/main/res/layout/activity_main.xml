@@ -1,106 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    tools:context="com.ekathvatech.onlinemp3downloader.MainActivity">
+    android:background = "@drawable/back"
+    tools:context="com.neonsec.megapro.MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/download"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="@string/parse"
-        android:textColor="@color/white"
-        android:layout_marginTop="19dp"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/gradient"
-        />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:text="@string/parse"
+        android:textColor="@color/black"
+        android:onClick="downloadStart"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/editText"
+        ads:layout_constraintVertical_bias="0.027" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:inputType="textPersonName"
+        android:layout_height="55dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="@string/video_url"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/title"
-        android:textSize="18sp"
-        android:textAlignment="center"
+        android:inputType="textPersonName"
         android:textColor="@color/black"
-        android:layout_below="@+id/textView3" />
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="1.0"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
-    </com.google.android.gms.ads.AdView>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/author"
         android:textColor="@color/black"
         android:textSize="18dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/author"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignParentStart="true"/>
+        ads:layout_constraintBottom_toTopOf="@+id/editText"
+        ads:layout_constraintEnd_toStartOf="@+id/imageView2"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/tvekathva"
-        android:textColor="@color/black"
-        android:textSize="10dp"
-        android:layout_below="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/u00a9_ne0n_security"
         android:layout_above="@+id/adView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/u00a9_ne0n_security"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/share"
+        ads:layout_constraintVertical_bias="0.725" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_below="@+id/button"
-        android:text="@string/change_dir" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:textColor="@color/aqua"
-        android:layout_height="wrap_content"
-        android:text="@string/online_mp3_downloader"
-        android:textSize="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/download"
+        android:layout_alignStart="@+id/download"
+        android:layout_alignEnd="@+id/download"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toStartOf="@+id/download"
+        ads:layout_constraintHorizontal_bias="0.924"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/editText"
+        ads:layout_constraintVertical_bias="0.0"
+        ads:srcCompat="@drawable/ic_folder_24dp" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_above="@+id/editText"
-        android:layout_toStartOf="@+id/button"
-        android:layout_marginBottom="11dp" />
+        android:layout_below="@+id/imageView"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@+id/download"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.692"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
-</android.widget.RelativeLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent"
+        ads:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginBottom="11dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginBottom="25dp"
+        android:text="" />
+
+    <ImageButton
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/gradient"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/download"
+        ads:layout_constraintVertical_bias="0.348"
+        ads:srcCompat="@android:drawable/ic_menu_share" />
+
+</android.support.constraint.ConstraintLayout>
