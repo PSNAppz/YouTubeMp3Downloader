@@ -105,55 +105,68 @@ public class MainActivity extends AppCompatActivity{
         textView.setTypeface(custom_font7);
         final TextView textView1 = (TextView) findViewById(R.id.textView);
         textView1.setTypeface(custom_font7);
-        if (PermissionCheck.readAndWriteExternalStorage(this)) {
             if (extras != null) {
                 value1 = extras.getString(Intent.EXTRA_TEXT);
                 editText.setText(value1);
             }
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
+}
+    protected void onDestroy() {
 
-                    if (mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show();
-                    }
-                    ytLink = editText.getText().toString();
-                    if (ytLink.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Please enter a valid video URL", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Converting please wait...", Toast.LENGTH_LONG).show();
-                    }
-                    new YouTubeExtractor(getApplicationContext()) {
-                        @Override
-                        public void onExtractionComplete(SparseArray<YtFile> ytFiles, VideoMeta vMeta) {
-                            if (ytFiles != null) {
-                                textView.setText("Title : " + vMeta.getTitle());
-                                textView1.setText(" By : " + vMeta.getAuthor());
-                                Glide.with(getApplicationContext()).load(vMeta.getMqImageUrl()).into(imageView);
-                                int tag = 140;
-                                String downloadUrl = "";
-                                try {
-                                    downloadUrl = ytFiles.get(tag).getUrl();
-                                }catch (Exception e){
-                                    Toast.makeText(getApplicationContext(), "Sorry ! This link is not supported. Sorry for the inconvenience caused.", Toast.LENGTH_SHORT).show();
-                                }
-                                DownloadManager.Request request;
-                                String extension;
-                                if (!downloadUrl.toString().isEmpty()) {
-                                    request = new DownloadManager.Request(Uri.parse(downloadUrl));
-                                    extension = ".mp3";
-                                    request.setTitle(vMeta.getTitle());
-                                    request.allowScanningByMediaScanner();
-                                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                                    request.setDestinationInExternalPublicDir(storage, vMeta.getTitle() + extension);
-                                    DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                                    manager.enqueue(request);
-                                }
+        super.onDestroy();
+    }
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
+    public void downloadStart(View view) {
+            Toast.makeText(getApplicationContext(), "Please enter a valid video URL", Toast.LENGTH_SHORT).show();
+
+
+            ytLink = editText.getText().toString();
+            if (ytLink.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please enter a valid video URL", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Converting please wait...", Toast.LENGTH_LONG).show();
+            }
+            new YouTubeExtractor(getApplicationContext()) {
+                @Override
+                public void onExtractionComplete(SparseArray<YtFile> ytFiles, VideoMeta vMeta) {
+                    boolean err = false;
+                    if (ytFiles != null) {
+                        textView.setText("Title : " + vMeta.getTitle());
+                        Glide.with(getApplicationContext()).load(vMeta.getMqImageUrl()).into(imageView);
+                        int tag = 140;
+                        String downloadUrl = "";
+                        try {
+                            downloadUrl = ytFiles.get(tag).getUrl();
+                        }catch (Exception e){
+                            tag = 171;
+                            downloadUrl = "";
+                            try {
+                                downloadUrl = ytFiles.get(tag).getUrl();
+                            }catch (Exception c) {
+                                err = true;
                             }
                         }
-                    }.extract(ytLink, true, true);
+                        if(err){
+                            Toast.makeText(getApplicationContext(), "Sorry ! This link is not supported. Sorry for the inconvenience caused.", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Download has started !", Toast.LENGTH_LONG).show();
+                        }
+                        DownloadManager.Request request;
+                        String extension;
+                        if (!downloadUrl.toString().isEmpty()) {
+                            request = new DownloadManager.Request(Uri.parse(downloadUrl));
+                            extension = ".mp3";
+                            request.setTitle(vMeta.getTitle());
+                            request.allowScanningByMediaScanner();
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            request.setDestinationInExternalPublicDir(storage, vMeta.getTitle() + extension);
+                            DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                            manager.enqueue(request);
+                        }
+                    }
                 }
-            });
-        }
+            }.extract(ytLink, true, true);
     }
 }
-
