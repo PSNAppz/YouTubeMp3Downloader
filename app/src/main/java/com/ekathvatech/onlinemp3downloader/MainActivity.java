@@ -3,60 +3,42 @@ package com.ekathvatech.onlinemp3downloader;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.codekidlabs.storagechooser.StorageChooser;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
 import at.huber.youtubeExtractor.YtFile;
 
 public class MainActivity extends AppCompatActivity{
-    private InterstitialAd mInterstitialAd;
-
-    String ytLink = "";
-    String storage = "";
-    private AdView mAdView;
+    private String ytLink = "";
+    private String storage = "";
     private EditText editText;
-    String value1 = "";
+    private String value1 = "";
     private ImageView imageView;
     private StorageChooser chooser;
-    private TextView title;
+    private Button button ;
+    private ImageButton shareButton ;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3041411382010702/9445884800");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-        });
-        title = (TextView) findViewById(R.id.textView3);
-        title.getPaint().setShader(new LinearGradient(0, 0, 0, title.getLineHeight(), Color.parseColor("#1de9b6"), Color.parseColor("#08AEEA"), Shader.TileMode.REPEAT));
+        button = (Button) findViewById(R.id.download);
+        shareButton = (ImageButton) findViewById(R.id.share);
         storage = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("STORAGE_PATH", "");
         if(storage.equals("")){
             PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("STORAGE_PATH",Environment.DIRECTORY_DOWNLOADS).apply();
@@ -69,8 +51,10 @@ public class MainActivity extends AppCompatActivity{
                 .withActivity(MainActivity.this)
                 .withFragmentManager(getFragmentManager())
                 .withMemoryBar(true)
+                .allowAddFolder(true)
+                .actionSave(true)
                 .build();
-        Button changeDir = (Button) findViewById(R.id.button2);
+        ImageButton changeDir =(ImageButton) findViewById(R.id.button2);
         changeDir.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -90,26 +74,33 @@ public class MainActivity extends AppCompatActivity{
         Typeface titlefont = Typeface.createFromAsset(getAssets(), "fonts/strasua.ttf");
         imageView = (ImageView) findViewById(R.id.imageView2);
 
-        mAdView = (AdView) findViewById(R.id.adView);
+
         final TextView ek = (TextView) findViewById(R.id.tvekathva);
         ek.setTypeface(custom_font7);
         final TextView title = (TextView) findViewById(R.id.textView3);
         title.setTypeface(titlefont);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
         editText = (EditText) findViewById(R.id.editText);
         editText.setTypeface(custom_font7);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "https://play.google.com/store/apps/details?id=com.ekathvatech.onlinemp3downloaderpro";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Download Mp3 from Y0uTub3 Videos using Mega Mp3 Downloader");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
         Bundle extras = getIntent().getExtras();
-        Button button = (Button) findViewById(R.id.button);
-        final TextView textView = (TextView) findViewById(R.id.textView2);
+        textView = (TextView) findViewById(R.id.textView5);
         textView.setTypeface(custom_font7);
-        final TextView textView1 = (TextView) findViewById(R.id.textView);
-        textView1.setTypeface(custom_font7);
             if (extras != null) {
                 value1 = extras.getString(Intent.EXTRA_TEXT);
                 editText.setText(value1);
             }
-}
+    }
+
     protected void onDestroy() {
 
         super.onDestroy();
@@ -170,3 +161,4 @@ public class MainActivity extends AppCompatActivity{
             }.extract(ytLink, true, true);
     }
 }
+
